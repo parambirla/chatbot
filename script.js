@@ -13,7 +13,7 @@ async function sendMessage() {
 
     // Send message to the backend
     try {
-        const response = await fetch('https://your-backend-url.com/api/chat', {
+        const response = await fetch('https://chatbot-2r72.onrender.com/api/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ prompt: userInput })
