@@ -22,7 +22,8 @@ async function sendMessage() {
 
         // Display bot's response
         const botMessage = document.createElement("div");
-        botMessage.textContent = `Bot: ${data.response || data.error}`;
+        //botMessage.textContent = `Bot: ${data.response || data.error}`;
+        botMessage.textContent = `Bot: OK !!! `;
         chatBox.appendChild(botMessage);
         chatBox.scrollTop = chatBox.scrollHeight; // Scroll to latest message
 
