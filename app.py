@@ -1,31 +1,39 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request
 import openai
+
 
 app = Flask(__name__)
 
-# Set your OpenAI API key
-openai.api_key = "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"
+# Set up OpenAI API credentials
+openai.api_key = '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'
 
-@app.route('/api/chat', methods=['POST'])
-def chat():
-    data = request.get_json()
-    user_message = data.get("prompt", "")
 
-    try:
-        response = openai.Completion.create(
-            model='gpt-3.5-turbo-instruct',
-            prompt=user_message,
-            temperature=1.2,
-            max_tokens=150,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0.6
-        )
-        bot_message = response['choices'][0]['message']['content']
-        return jsonify({"response": bot_message})
+# Define the default route to return the index.html file
+@app.route("/")
+def index():
+    return render_template("index.html")
 
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+# Define the /api route to handle POST requests
+@app.route("/api", methods=["POST"])
+def api():
+    # Get the message from the POST request
+    message = request.json.get("message")
+    # Send the message to OpenAI's API and receive the response
+    
+    '''
+    completion = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "user", "content": message}
+    ]
+    )
+    if completion.choices[0].message!=None:
+        return completion.choices[0].message
 
-if __name__ == "__main__":
-    app.run(debug=True)
+    else :
+        return 'Failed to Generate response!'
+    '''
+    return 'I am Good' 
+
+if __name__=='__main__':
+    app.run()
